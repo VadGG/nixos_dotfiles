@@ -118,6 +118,9 @@ in
       helix # code editor
 
       nh
+      nix-output-monitor
+      nvd 
+      
       starship
       lazygit
 
@@ -136,7 +139,7 @@ in
       appimage-run # Runs AppImages on NixOS
       firefox # Browser
       google-chrome # Browser
-      transmission-gtk # Torrenting client
+      transmission_4-gtk # Torrenting client
       # remmina # XRDP & VNC Client
 
       # File Management
