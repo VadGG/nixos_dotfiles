@@ -218,6 +218,8 @@ in
     };
     programs = {
       home-manager.enable = true;
+      helix.enable = true;
+      git.enable = true;
     };
     # xdg = {
     #   mime.enable = true;
