@@ -86,6 +86,9 @@ in
   ];
 
   environment = {
+    sessionVariables = {
+      FLAKE = "/home/${vars.user}/dotfiles";
+    };
     variables = {
       # TERMINAL = "${vars.terminal}";
       # EDITOR = "${vars.editor}";
@@ -114,6 +117,7 @@ in
       xdg-utils # Environment integration
       helix # code editor
 
+      nh
       starship
       lazygit
 

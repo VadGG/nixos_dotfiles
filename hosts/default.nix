@@ -22,7 +22,7 @@ in
     specialArgs = {
       inherit inputs system stable vars;
       host = {
-        hostName = "home-lab";
+        hostName = "minipc";
       };
     };
     modules = [
