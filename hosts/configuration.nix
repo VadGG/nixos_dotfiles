@@ -218,8 +218,35 @@ in
     };
     programs = {
       home-manager.enable = true;
-      helix.enable = true;
-      git.enable = true;
+      helix = {
+        enable = true;
+        settings = {
+          theme = "nord";
+        };
+
+        languages = {
+          language = [
+            {
+              name = "nix";
+              formatter.command = "alejandra";
+              auto-format = true;
+              indent = {
+                tab-width = 8;
+                unit = "t";
+              };
+            }
+          ];
+        };
+
+      };
+      git = {
+        enable = true;
+        extraConfig = {
+          user.name = "VadimG";
+          user.email = "vadm.gagarin@gmail.com";
+        };
+        
+      };
     };
     # xdg = {
     #   mime.enable = true;
