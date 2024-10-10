@@ -115,13 +115,14 @@ in
       usbutils # Manage USB
       wget # Retriever
       xdg-utils # Environment integration
-      helix # code editor
+
+      # helix # code editor
 
       nh
       nix-output-monitor
       nvd 
       
-      starship
+      # starship
       lazygit
 
       # Video/Audio
@@ -222,9 +223,16 @@ in
   home-manager.users.${vars.user} = {
     home = {
       stateVersion = "22.05";
+
+      packages = with pkgs; [
+        nnn
+        helix
+        starship
+      ];
     };
     programs = {
       home-manager.enable = true;
+
       helix = {
         enable = true;
         settings = {
@@ -252,8 +260,21 @@ in
           user.name = "VadimG";
           user.email = "vadm.gagarin@gmail.com";
         };
-        
       };
+
+    starship = {
+      enable = true;
+      # custom settings
+      settings = {
+        add_newline = false;
+        aws.disabled = true;
+        gcloud.disabled = true;
+        line_break.disabled = true;
+      };
+    };
+
+
+      
     };
     # xdg = {
     #   mime.enable = true;
