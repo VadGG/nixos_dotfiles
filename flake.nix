@@ -2,10 +2,14 @@
   description = "HomeLab Nix Configuration";
 
   inputs = {
-    nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable"; # Nix Packages (Default)
+    nixpkgs.url =
+      "github:nixos/nixpkgs/nixos-unstable"; # Nix Packages (Default)
     # nixpkgs-unstable.url = "github:nixos/nixpkgs/nixos-unstable"; # Unstable Nix Packages
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05"; # Unstable Nix Packages
-    nixos-hardware.url = "github:nixos/nixos-hardware/master"; # Hardware Specific Configurations
+    nixpkgs-stable.url =
+      "github:nixos/nixpkgs/nixos-24.05"; # Unstable Nix Packages
+    nixos-hardware.url =
+      "github:nixos/nixos-hardware/master"; # Hardware Specific Configurations
+    zen-browser.url = "github:MarceColl/zen-browser-flake";
 
     # NixOS community
     home-manager = {
@@ -15,18 +19,15 @@
 
   };
 
-  outputs = { self, nixpkgs, nixpkgs-stable, nixos-hardware, home-manager, ... }@inputs: 
-    let
-      vars = {
-        user = "vadim";
-      };
+  outputs = { self, nixpkgs, nixpkgs-stable, nixos-hardware, home-manager
+    , zen-browser, ... }@inputs:
+    let vars = { user = "vadim"; };
     in {
-      nixosConfigurations = (
-        import ./hosts {
-          inherit (nixpkgs) lib;
-          inherit inputs nixpkgs nixpkgs-stable nixos-hardware home-manager vars; # Inherit inputs
-        }
-      );
+      nixosConfigurations = (import ./hosts {
+        inherit (nixpkgs) lib;
+        inherit inputs nixpkgs nixpkgs-stable nixos-hardware home-manager
+          zen-browser vars; # Inherit inputs
+      });
 
       # nixosConfigurations = {
 
@@ -46,10 +47,10 @@
       #     stateVersion = "22.11";
       #     configuration = {
       #       imports = [
-              
+
       #       ];
       #     };
-          
+
       #   };
       # };
 

@@ -1,5 +1,4 @@
-#
-#  Main system configuration. More information available in configuration.nix(5) man page.
+# Main system configuration. More information available in configuration.nix(5) man page.
 #
 #  flake.nix
 #   ├─ ./hosts
@@ -26,8 +25,7 @@
 
 let
   # terminal = pkgs.${vars.terminal};
-in
-{
+in {
   # imports = (import ../modules/desktops ++
   #   import ../modules/editors ++
   #   import ../modules/hardware ++
@@ -46,15 +44,14 @@ in
 
   users.users.${vars.user} = {
     isNormalUser = true;
-    extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" ];
+    extraGroups =
+      [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" ];
   };
 
   time.timeZone = "Europe/Brussels";
   i18n = {
     defaultLocale = "en_US.UTF-8";
-    extraLocaleSettings = {
-      LC_MONETARY = "nl_BE.UTF-8";
-    };
+    extraLocaleSettings = { LC_MONETARY = "nl_BE.UTF-8"; };
   };
 
   console = {
@@ -78,101 +75,94 @@ in
     noto-fonts # Google + Unicode
     noto-fonts-cjk
     noto-fonts-emoji
-    (nerdfonts.override {
-      fonts = [
-        "FiraCode"
-      ];
-    })
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
 
   environment = {
-    sessionVariables = {
-      FLAKE = "/home/${vars.user}/dotfiles";
-    };
+    sessionVariables = { FLAKE = "/home/${vars.user}/dotfiles"; };
     variables = {
       # TERMINAL = "${vars.terminal}";
       # EDITOR = "${vars.editor}";
       # VISUAL = "${vars.editor}";
     };
-    systemPackages = with pkgs; [
-      # Terminal
-      # terminal # Terminal Emulator
-      btop # Resource Manager
-      # cifs-utils # Samba
-      # coreutils # GNU Utilities
-      git # Version Control
-      # gvfs # Samba
-      # killall # Process Killer
-      lshw # Hardware Config
-      nano # Text Editor
-      # nodejs # Javascript Runtime
-      # nodePackages.pnpm # Package Manager
-      nix-tree # Browse Nix Store
-      pciutils # Manage PCI
-      ranger # File Manager
-      smartmontools # Disk Health
-      tldr # Helper
-      usbutils # Manage USB
-      wget # Retriever
-      xdg-utils # Environment integration
+    systemPackages = with pkgs;
+      [
+        inputs.zen-browser.packages."${system}".default
+        # Terminal
+        # terminal # Terminal Emulator
+        btop # Resource Manager
+        # cifs-utils # Samba
+        # coreutils # GNU Utilities
+        git # Version Control
+        # gvfs # Samba
+        # killall # Process Killer
+        lshw # Hardware Config
+        nano # Text Editor
+        # nodejs # Javascript Runtime
+        # nodePackages.pnpm # Package Manager
+        nix-tree # Browse Nix Store
+        pciutils # Manage PCI
+        ranger # File Manager
+        smartmontools # Disk Health
+        tldr # Helper
+        usbutils # Manage USB
+        wget # Retriever
+        xdg-utils # Environment integration
 
-      # helix # code editor
+        nh
+        nix-output-monitor
+        nvd
 
-      nh
-      nix-output-monitor
-      nvd 
-      
-      # starship
-      lazygit
+        # starship
+        lazygit
 
-      # Video/Audio
-      # alsa-utils # Audio Control
-      # feh # Image Viewer
-      # linux-firmware # Proprietary Hardware Blob
-      # mpv # Media Player
-      # pavucontrol # Audio Control
-      # pipewire # Audio Server/Control
-      # pulseaudio # Audio Server/Control
-      # qpwgraph # Pipewire Graph Manager
-      vlc # Media Player
+        # Video/Audio
+        # alsa-utils # Audio Control
+        # feh # Image Viewer
+        # linux-firmware # Proprietary Hardware Blob
+        # mpv # Media Player
+        # pavucontrol # Audio Control
+        # pipewire # Audio Server/Control
+        # pulseaudio # Audio Server/Control
+        # qpwgraph # Pipewire Graph Manager
+        vlc # Media Player
 
-      # Apps
-      appimage-run # Runs AppImages on NixOS
-      firefox # Browser
-      google-chrome # Browser
-      transmission_4-gtk # Torrenting client
-      # remmina # XRDP & VNC Client
+        # Apps
+        appimage-run # Runs AppImages on NixOS
+        firefox # Browser
+        google-chrome # Browser
+        transmission_4-gtk # Torrenting client
+        # remmina # XRDP & VNC Client
 
-      # File Management
-      file-roller # Archive Manager
-      pcmanfm # File Browser
-      p7zip # Zip Encryption
-      rsync # Syncer - $ rsync -r dir1/ dir2/
-      unzip # Zip Files
-      unrar # Rar Files
-      wpsoffice # Office
-      zip # Zip
+        # File Management
+        file-roller # Archive Manager
+        pcmanfm # File Browser
+        p7zip # Zip Encryption
+        rsync # Syncer - $ rsync -r dir1/ dir2/
+        unzip # Zip Files
+        unrar # Rar Files
+        wpsoffice # Office
+        zip # Zip
 
-      # Other Packages Found @
-      # - ./<host>/default.nix
-      # - ../modules
-    ] ++
-    (with stable; [
-      # Apps
-      # firefox # Browser
-      image-roll # Image Viewer
-    ]);
+        # Other Packages Found @
+        # - ./<host>/default.nix
+        # - ../modules
+      ] ++ (with stable; [
+        # Apps
+        # firefox # Browser
+        flatpak
+        image-roll # Image Viewer
+        # helix # code editor
+      ]);
   };
 
-  programs = {
-    dconf.enable = true;
-  };
+  services.flatpak.enable = true;
+  # xdg.portal.enable = true;
+  programs = { dconf.enable = true; };
 
   hardware.pulseaudio.enable = false;
   services = {
-    printing = {
-      enable = true;
-    };
+    printing = { enable = true; };
     pipewire = {
       enable = true;
       alsa = {
@@ -191,12 +181,8 @@ in
     };
   };
 
-  # flatpak.enable = true;
-
   nix = {
-    settings = {
-      auto-optimise-store = true;
-    };
+    settings = { auto-optimise-store = true; };
     gc = {
       automatic = true;
       dates = "weekly";
@@ -222,38 +208,104 @@ in
 
   home-manager.users.${vars.user} = {
     home = {
-      stateVersion = "22.05";
+      stateVersion = "24.05";
 
-      packages = with pkgs; [
-        nnn
-        helix
-        starship
-      ];
+      packages = with pkgs; [ nnn starship ];
     };
     programs = {
       home-manager.enable = true;
 
+      bash = {
+        enable = true;
+        enableCompletion = true;
+        bashrcExtra = ''
+          export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+          # export HELIX_RUNTIME="/nix/store/q5k6926qyz5iar08av6pn2a82r23zs9q-helix-24.07/lib/runtime"
+          # export HELIX_DEFAULT_RUNTIME="/nix/store/q5k6926qyz5iar08av6pn2a82r23zs9q-helix-24.07/lib/runtime"
+          # ln -s $HELIX_RUNTIME ~/.config/helix/runtime
+          # ln -s $HELIX_RUNTIME /nix/store/q5k6926qyz5iar08av6pn2a82r23zs9q-helix-24.07/bin/runtime
+        '';
+
+        # set some aliases, feel free to add more or remove some
+        shellAliases = { k = "kubectl"; };
+      };
+
       helix = {
         enable = true;
-        settings = {
-          theme = "nord";
-        };
 
-        languages = {
-          language = [
-            {
-              name = "nix";
-              formatter.command = "alejandra";
-              auto-format = true;
-              indent = {
-                tab-width = 8;
-                unit = "t";
-              };
-            }
-          ];
-        };
+        defaultEditor = true;
+        extraPackages = with pkgs; [
+          bash-language-server
+          biome
+          clang-tools
+          docker-compose-language-service
+          dockerfile-language-server-nodejs
+          golangci-lint
+          golangci-lint-langserver
+          gopls
+          gotools
+          helix-gpt
+          marksman
+          nil
+          nixpkgs-fmt
+          nodePackages.prettier
+          nodePackages.typescript-language-server
+          pgformatter
+          (python3.withPackages
+            (p: (with p; [ black isort python-lsp-black python-lsp-server ])))
+          rust-analyzer
+          taplo
+          taplo-lsp
+          terraform-ls
+          typescript
+          vscode-langservers-extracted
+          yaml-language-server
+        ];
 
+        settings = { theme = "gruvbox_community"; };
+
+        languages.language = [{
+          name = "nix";
+          auto-format = true;
+          formatter.command = "${pkgs.nixfmt}/bin/nixfmt";
+        }];
+        themes = {
+          autumn_night_transparent = {
+            "inherits" = "autumn_night";
+            "ui.background" = { };
+          };
+        };
       };
+
+      # helix = {
+      #   enable = true;
+      #   settings = {
+      #     theme = "nord";
+      #   };
+
+      #   extraPackages = with pkgs; [
+      #     # Runtime dependencies
+      #     emmet-ls
+      #     nodejs
+
+      #   ];
+
+      #   languages = {
+      #     language = [
+      #       {
+      #         name = "nix";
+      #         formatter.command = "alejandra";
+      #         auto-format = true;
+      #         indent = {
+      #           tab-width = 8;
+      #           unit = "t";
+      #         };
+      #       }
+      #     ];
+      #   };
+
+      # };
+
       git = {
         enable = true;
         extraConfig = {
@@ -262,19 +314,17 @@ in
         };
       };
 
-    starship = {
-      enable = true;
-      # custom settings
-      settings = {
-        add_newline = false;
-        aws.disabled = true;
-        gcloud.disabled = true;
-        line_break.disabled = true;
+      starship = {
+        enable = true;
+        # custom settings
+        settings = {
+          add_newline = false;
+          aws.disabled = true;
+          gcloud.disabled = true;
+          line_break.disabled = true;
+        };
       };
-    };
 
-
-      
     };
     # xdg = {
     #   mime.enable = true;

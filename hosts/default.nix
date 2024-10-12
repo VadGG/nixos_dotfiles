@@ -14,16 +14,13 @@ let
   };
 
   lib = nixpkgs.lib;
-in
-{
+in {
   # Desktop Profile
   minipc = lib.nixosSystem {
     inherit system;
     specialArgs = {
       inherit inputs system stable vars;
-      host = {
-        hostName = "minipc";
-      };
+      host = { hostName = "minipc"; };
     };
     modules = [
       ./minipc
