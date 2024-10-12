@@ -5,10 +5,9 @@
 { config, pkgs, ... }:
 
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-    ];
+  imports = [ # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+  ];
 
   # nix.settings.experimental-features = [ "nix-command" "flakes" ];
 
@@ -56,9 +55,9 @@
   #   LC_TIME = "en_US.UTF-8";
   # };
 
-
   # Enable the X11 windowing system.
   services.xserver.enable = true;
+  services.xserver.xkbOptions = "caps:escape";
 
   # Enable the GNOME Desktop Environment.
   services.xserver.displayManager.gdm.enable = true;
@@ -99,9 +98,10 @@
     isNormalUser = true;
     description = "kitty";
     extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
-    #  thunderbird
-    ];
+    packages = with pkgs;
+      [
+        #  thunderbird
+      ];
   };
 
   # users.users.vadim = {
@@ -161,7 +161,6 @@
 
   # environment.variables.EDITOR = "hx";
 
-
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
   # programs.mtr.enable = true;
@@ -174,7 +173,6 @@
 
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
-
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
