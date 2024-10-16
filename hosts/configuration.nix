@@ -146,7 +146,6 @@ in {
         unrar # Rar Files
         wpsoffice # Office
         zip # Zip
-        zed-editor
 
         # Other Packages Found @
         # - ./<host>/default.nix
