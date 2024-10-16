@@ -1,8 +1,9 @@
-{ pkgs, vars, ... }:
+{ pkgs, vars, inputs, ... }:
 
 {
   environment = {
-    systemPackages = with pkgs; [ helix ];
+    # systemPackages = with pkgs; [ helix ];
+    systemPackages = [ inputs.helix.packages."${pkgs.system}".helix ];
     # sessionVariables = { HELIX_RUNTIME = "$HOME/src/helix/runtime"; };
   };
 
