@@ -1,1 +1,1 @@
-[ ./kitty.nix ]
+[ ./kitty.nix ./helix.nix ]
