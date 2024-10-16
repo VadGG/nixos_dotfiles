@@ -26,6 +26,17 @@ in {
       ./minipc
       ./configuration.nix
 
+      inputs.xremap-flake.nixosModules.default
+      # This is effectively an inline module
+      {
+        # Modmap for single key rebinds
+        services.xremap.config.modmap = [{
+          name = "Global";
+          remap = { "CapsLock" = "Esc"; }; # globally remap CapsLock to Esc
+        }];
+
+      }
+
       home-manager.nixosModules.home-manager
       {
         home-manager.useGlobalPkgs = true;
