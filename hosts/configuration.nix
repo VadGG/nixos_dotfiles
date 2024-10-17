@@ -212,7 +212,7 @@ in {
     home = {
       stateVersion = "24.05";
 
-      packages = with pkgs; [ nnn starship ];
+      # packages = with pkgs; [ nnn starship ];
     };
     programs = {
       home-manager.enable = true;
@@ -231,35 +231,6 @@ in {
         # set some aliases, feel free to add more or remove some
         shellAliases = { k = "kubectl"; };
       };
-
-      # helix = {
-      #   enable = true;
-      #   settings = {
-      #     theme = "nord";
-      #   };
-
-      #   extraPackages = with pkgs; [
-      #     # Runtime dependencies
-      #     emmet-ls
-      #     nodejs
-
-      #   ];
-
-      #   languages = {
-      #     language = [
-      #       {
-      #         name = "nix";
-      #         formatter.command = "alejandra";
-      #         auto-format = true;
-      #         indent = {
-      #           tab-width = 8;
-      #           unit = "t";
-      #         };
-      #       }
-      #     ];
-      #   };
-
-      # };
 
       git = {
         enable = true;
