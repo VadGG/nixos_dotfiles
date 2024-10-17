@@ -1,9 +1,12 @@
 { pkgs, vars, inputs, ... }:
 
 {
+  nixpkgs.config.allowUnfree = true;
+  nixpkgs.overlays = [ inputs.helix.overlays.default ];
   environment = {
-    # systemPackages = with pkgs; [ helix ];
-    systemPackages = [ inputs.helix.packages."${pkgs.system}".helix ];
+    systemPackages = with pkgs; [ helix ];
+    # systemPackages = with pkgs;
+    #   [ inputs.helix.packages."${pkgs.system}".helix ];
     # sessionVariables = { HELIX_RUNTIME = "$HOME/src/helix/runtime"; };
   };
 
@@ -12,6 +15,11 @@
       enable = true;
       source = ./bin/yazi-pick-current;
     };
+
+    # home = {
+    #   packages = with pkgs; [ inputs.helix.packages."${pkgs.system}".helix ];
+    #   # packages = with pkgs; [ nnn starship ];
+    # };
 
     programs = {
       helix = {

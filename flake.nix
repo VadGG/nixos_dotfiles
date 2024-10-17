@@ -12,7 +12,10 @@
     nixos-hardware.url =
       "github:nixos/nixos-hardware/master"; # Hardware Specific Configurations
 
-    helix.url = "github:tdaron/helix/command-expansion";
+    helix = {
+      url = "github:tdaron/helix/command-expansion";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     zen-browser.url = "github:MarceColl/zen-browser-flake";
 
