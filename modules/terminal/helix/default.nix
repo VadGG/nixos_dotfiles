@@ -7,11 +7,12 @@
     # sessionVariables = { HELIX_RUNTIME = "$HOME/src/helix/runtime"; };
   };
 
-  xdg.configFile = {
-    "helix/bin/yazi-pick-current"
-  }
-
   home-manager.users.${vars.user} = {
+    xdg.configFile."helix/bin/yazi-pick-current" = {
+      enable = true;
+      source = ./bin/yazi-pick-current;
+    };
+
     programs = {
       helix = {
         enable = true;
@@ -43,13 +44,6 @@
           typescript
           vscode-langservers-extracted
           yaml-language-server
-        ] ++ [
-          "--suffix"
-          "PATH"
-          ":"
-          (lib.makeBinPath [
-            (writeShellScriptBin "yazi-pick-current" (builtins.readFile ./bin/yazi-pick-current))
-          ])
         ];
 
         settings = {
@@ -137,6 +131,10 @@
             C-q = ":quit-all";
             C-s = ":write!";
             x = ":buffer-close";
+            space = [
+              ":sh zellij run -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/bin/yazi-pick-current %{filename}"
+            ];
+
           };
 
         };
