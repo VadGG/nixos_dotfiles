@@ -1,1 +1,1 @@
-[ ./kitty ]
+[ ./wezterm.nix ]
