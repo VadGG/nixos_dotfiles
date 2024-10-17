@@ -9,9 +9,10 @@
       bash = { shellAliases = { z = "zellij"; }; };
 
     };
-    xdg.configFile."zellij/config.kdl" = {
+    xdg.configFile."zellij" = {
       enable = true;
-      source = ./config.kdl;
+      recursive = true;
+      source = ./config/zellij;
     };
   };
 }

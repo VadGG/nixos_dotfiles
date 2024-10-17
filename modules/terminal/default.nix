@@ -1,1 +1,1 @@
-[ ./helix ./zellij ./yazi ]
+[ ./helix.nix ./zellij.nix ./yazi.nix ]

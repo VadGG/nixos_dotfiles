@@ -23,19 +23,10 @@
       };
     };
 
-    xdg.configFile."yazi/config.toml" = {
+    xdg.configFile."yazi" = {
       enable = true;
-      source = ./config.toml;
-    };
-
-    xdg.configFile."yazi/theme.toml" = {
-      enable = true;
-      source = ./theme.toml;
-    };
-
-    xdg.configFile."yazi/keymap.toml" = {
-      enable = true;
-      source = ./keymap.toml;
+      recursive = true;
+      source = ./config/yazi;
     };
 
   };

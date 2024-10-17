@@ -11,10 +11,11 @@
   };
 
   home-manager.users.${vars.user} = {
-    xdg.configFile."helix/bin/yazi-pick-current" = {
+    xdg.configFile."helix/bin" = {
       executable = true;
+      recursive = true;
       enable = true;
-      source = ./bin/yazi-pick-current;
+      source = ./config/helix/bin;
     };
 
     # home = {
