@@ -34,7 +34,7 @@ in {
   #   import ../modules/shell ++
   #   import ../modules/theming);
 
-  imports = (import ../modules/programs);
+  imports = (import ../modules/programs ++ import ../modules/terminal);
 
   boot = {
     tmp = {
