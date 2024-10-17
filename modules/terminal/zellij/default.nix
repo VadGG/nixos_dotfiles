@@ -6,10 +6,12 @@
   home-manager.users.${vars.user} = {
     programs = {
       zellij = { enable = true; };
-      xdg.configFile."zellij/config.kdl" = {
-        enable = true;
-        source = ./config.kdl;
-      };
+      bash = { shellAliases = { z = "zellij"; }; };
+
+    };
+    xdg.configFile."zellij/config.kdl" = {
+      enable = true;
+      source = ./config.kdl;
     };
   };
 }
