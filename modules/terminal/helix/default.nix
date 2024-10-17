@@ -7,6 +7,10 @@
     # sessionVariables = { HELIX_RUNTIME = "$HOME/src/helix/runtime"; };
   };
 
+  xdg.configFile = {
+    "helix/bin/yazi-pick-current"
+  }
+
   home-manager.users.${vars.user} = {
     programs = {
       helix = {
@@ -39,6 +43,13 @@
           typescript
           vscode-langservers-extracted
           yaml-language-server
+        ] ++ [
+          "--suffix"
+          "PATH"
+          ":"
+          (lib.makeBinPath [
+            (writeShellScriptBin "yazi-pick-current" (builtins.readFile ./bin/yazi-pick-current))
+          ])
         ];
 
         settings = {
