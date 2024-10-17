@@ -12,6 +12,7 @@
 
   home-manager.users.${vars.user} = {
     xdg.configFile."helix/bin/yazi-pick-current" = {
+      executable = true;
       enable = true;
       source = ./bin/yazi-pick-current;
     };
