@@ -33,5 +33,10 @@
       source = ./theme.toml;
     };
 
+    xdg.configFile."yazi/keymap.toml" = {
+      enable = true;
+      source = ./keymap.toml;
+    };
+
   };
 }
