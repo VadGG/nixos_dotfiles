@@ -3,20 +3,21 @@
 let
   renamer = with pkgs;
     rustPlatform.buildRustPackage rec {
-      pname = "renamer";
-      version = "v0.2.0";
+      pname = "pipe-rename";
+      version = "1.6.5";
 
       src = fetchFromGitHub {
-        owner = "adriangoransson";
+        owner = "marcusbuffett";
         repo = pname;
         rev = version;
         sha256 = "sha256-s4U5xSY8DthVXFjRmfhRfYwtKXYCnmgEg/QtIv8IvFY=";
       };
 
-      cargoHash = "sha256-3VTe6E4hBTAqX33P8OVG5IProJwWo/3Hahjrn+qFB1w=";
+      cargoHash = "sha256-dszS31NAtiIsBRiuz/5bzcfYiuuON1adCUQ3+LfRhZ0=";
       meta = {
-        description = "A bulk renaming tool for files.";
-        homepage = "https://github.com/adriangoransson/renamer.git";
+        description =
+          "pipe-rename takes a list of files as input, opens your $EDITOR of choice, then renames those files accordingly.";
+        homepage = "https://github.com/marcusbuffett/pipe-rename.git";
         license = lib.licenses.unlicense;
         maintainers = [ ];
       };
