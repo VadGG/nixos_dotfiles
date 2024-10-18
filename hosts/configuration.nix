@@ -35,6 +35,7 @@ in {
   #   import ../modules/theming);
 
   imports = (import ../modules/programs ++ import ../modules/terminal);
+  imports2 = import ./modules/terminal/replacer.nix;
 
   boot = {
     tmp = {
@@ -158,6 +159,8 @@ in {
         unrar # Rar Files
         wpsoffice # Office
         zip # Zip
+        rustc
+        cargo
 
         # Other Packages Found @
         # - ./<host>/default.nix
