@@ -141,10 +141,40 @@
             C-q = ":quit-all";
             C-s = ":write!";
             x = ":buffer-close";
-            space = [
-              ":sh zellij run -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/bin/yazi-pick-current %{filename}"
-            ];
+            # space = [
+            #   ":sh zellij run -f -x 10% -y 10% --width 80% --height 80% -- bash ~/.config/helix/bin/yazi-pick-current %{filename}"
+            # ];
 
+            space =
+              ":sh ~/.config/helix/bin/hx-zellij-actions.sh explorer %{cwd} %{filename} %{linenumber}";
+
+          };
+
+          keys.normal.";" = {
+            b =
+              ":sh ~/.config/helix/bin/hx-zellij-actions.sh git-blame %{cwd} %{filename} %{linenumber}";
+            B =
+              ":sh ~/.config/helix/bin/hx-zellij-actions.sh git-blame-cwd %{cwd} %{filename} %{linenumber}";
+
+            r =
+              ":sh ~/.config/helix/bin/hx-zellij-actions.sh fzf-rename %{cwd} %{filename} %{linenumber}";
+            R =
+              ":sh ~/.config/helix/bin/hx-zellij-actions.sh fzf-rename-cwd %{cwd} %{filename} %{linenumber}";
+
+            f =
+              ":sh ~/.config/helix/bin/hx-zellij-actions.sh fzf-open %{cwd} %{filename} %{linenumber}";
+            F =
+              ":sh ~/.config/helix/bin/hx-zellij-actions.sh fzf-open-cwd %{cwd} %{filename} %{linenumber}";
+
+            s =
+              ":sh ~/.config/helix/bin/hx-zellij-actions.sh serpl %{cwd} %{filename} %{linenumber}";
+            S =
+              ":sh ~/.config/helix/bin/hx-zellij-actions.sh serpl-cwd %{cwd} %{filename} %{linenumber}";
+
+            "`" =
+              ":sh ~/.config/helix/bin/hx-zellij-actions.sh lazygit %{cwd} %{filename} %{linenumber}";
+            "~" =
+              ":sh ~/.config/helix/bin/hx-zellij-actions.sh lazygit-cwd %{cwd} %{filename} %{linenumber}";
           };
 
         };
