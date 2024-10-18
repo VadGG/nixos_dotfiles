@@ -4,7 +4,7 @@
   nixpkgs.config.allowUnfree = true;
   nixpkgs.overlays = [ inputs.helix.overlays.default ];
   environment = {
-    systemPackages = with pkgs; [ helix ];
+    systemPackages = with pkgs; [ fzf ripgrep bat helix ];
     # systemPackages = with pkgs;
     #   [ inputs.helix.packages."${pkgs.system}".helix ];
     # sessionVariables = { HELIX_RUNTIME = "$HOME/src/helix/runtime"; };
