@@ -35,7 +35,6 @@ in {
   #   import ../modules/theming);
 
   imports = (import ../modules/programs ++ import ../modules/terminal);
-  imports2 = import ./modules/terminal/replacer.nix;
 
   boot = {
     tmp = {
