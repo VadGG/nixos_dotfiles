@@ -1,4 +1,5 @@
-{ inputs, nixpkgs, nixpkgs-stable, nixos-hardware, home-manager, vars, ... }:
+{ inputs, nixpkgs, nixpkgs-stable, nixos-hardware, home-manager, zen-browser
+, vars, ... }:
 
 let
   system = "x86_64-linux";
@@ -19,7 +20,7 @@ in {
   minipc = lib.nixosSystem {
     inherit system;
     specialArgs = {
-      inherit inputs system stable vars;
+      inherit lib inputs system pkgs stable vars;
       host = { hostName = "minipc"; };
     };
     modules = [

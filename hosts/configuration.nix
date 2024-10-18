@@ -21,7 +21,7 @@
 #           └─ default.nix
 #
 
-{ lib, config, pkgs, stable, inputs, vars, ... }:
+{ lib, system, pkgs, stable, inputs, vars, ... }:
 
 let
   # terminal = pkgs.${vars.terminal};
