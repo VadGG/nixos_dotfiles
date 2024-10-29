@@ -4,25 +4,24 @@
 { config, lib, pkgs, modulesPath, vars, host, ... }:
 
 {
-  imports =
-    [ (modulesPath + "/installer/scan/not-detected.nix")
-    ];
+  imports = [ (modulesPath + "/installer/scan/not-detected.nix") ];
 
-  boot.initrd.availableKernelModules = [ "xhci_pci" "thunderbolt" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
+  boot.initrd.availableKernelModules =
+    [ "xhci_pci" "thunderbolt" "ahci" "nvme" "usbhid" "usb_storage" "sd_mod" ];
   boot.initrd.kernelModules = [ ];
   boot.kernelModules = [ "kvm-intel" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" =
-    { device = "/dev/disk/by-uuid/ae0d4322-4910-4eec-be93-01388c445a9c";
-      fsType = "ext4";
-    };
+  fileSystems."/" = {
+    device = "/dev/disk/by-uuid/ae0d4322-4910-4eec-be93-01388c445a9c";
+    fsType = "ext4";
+  };
 
-  fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/4318-978D";
-      fsType = "vfat";
-      options = [ "fmask=0077" "dmask=0077" ];
-    };
+  fileSystems."/boot" = {
+    device = "/dev/disk/by-uuid/4318-978D";
+    fsType = "vfat";
+    options = [ "fmask=0077" "dmask=0077" ];
+  };
 
   swapDevices = [ ];
 
@@ -36,16 +35,17 @@
   # networking.interfaces.wlo1.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  hardware.cpu.intel.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
-
+  hardware.cpu.intel.updateMicrocode =
+    lib.mkDefault config.hardware.enableRedistributableFirmware;
 
   networking = with host; {
-    useDHCP = lib.mkDefault true;
+    networkmanager.enable = true;
+    # useDHCP = lib.mkDefault true;
     hostName = hostName;
     firewall = {
-      enable = false; 
-      allowedTCPPorts = [];
-      allowedUDPPorts = [];
+      enable = false;
+      allowedTCPPorts = [ 80 443 6969 1337 57766 ];
+      allowedUDPPorts = [ 80 443 6969 1337 57766 ];
     };
 
     # bridges = {
@@ -75,5 +75,5 @@
     # defaultGateway = "192.168.0.1";
     # nameservers = [ "192.168.0.4" "1.1.1.1" ];
   };
- 
+
 }

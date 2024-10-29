@@ -43,7 +43,7 @@
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
   # Enable networking
-  networking.networkmanager.enable = true;
+  # networking.networkmanager.enable = true;
 
   # Set your time zone.
   # time.timeZone = "America/New_York";
@@ -134,15 +134,9 @@
   #   pkgs.gnumake
   #   # pkgs.vlc
   #   pkgs.docker
-  #   # pkgs.transmission-gtk
   #   pkgs.manix
   #   # pkgs.helix
   # ];
-
-  # services.transmission = { 
-  #   enable = true; #Enable transmission daemon
-  #   openRPCPort = true; #Open firewall for RPC
-  # };
 
   # programs.nix-ld.enable = true;
   # virtualisation.docker.enable = true;

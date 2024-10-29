@@ -146,8 +146,6 @@ in {
         appimage-run # Runs AppImages on NixOS
         firefox # Browser
         google-chrome # Browser
-        transmission_4-gtk # Torrenting client
-        # remmina # XRDP & VNC Client
 
         # File Management
         file-roller # Archive Manager
@@ -169,8 +167,19 @@ in {
         # firefox # Browser
         flatpak
         image-roll # Image Viewer
+        transmission-gtk
+        deluge
       ]);
   };
+
+  # services.transmission.enable = true;
+  # services.transmission.openFirewall = true;
+  # services.transmission.openRPCPort = true;
+  # services.transmission.performanceNetParameters = true;
+  # services.transmission = {
+  #   enable = true; # Enable transmission daemon
+  #   openRPCPort = true; # Open firewall for RPC
+  # };
 
   services.flatpak.enable = true;
   # xdg.portal.enable = true;

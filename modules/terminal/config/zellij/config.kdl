@@ -8,10 +8,47 @@ keybinds clear-defaults=true {
     }
     locked {
         bind "Ctrl g" { SwitchToMode "Normal"; }
-        bind "Alt z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
+        // bind "Alt z" { ToggleFocusFullscreen; SwitchToMode "Normal"; }
     }
+    shared_except "locked" {
+        bind "Ctrl g" { SwitchToMode "Locked"; }
+
+        // bind "Ctrl n" { NewPane; }
+
+        // bind "Ctrl h" { MoveFocusOrTab "Left"; }
+        // bind "Ctrl l" { MoveFocusOrTab "Right"; }
+        // bind "Ctrl j" { MoveFocus "Down"; }
+        // bind "Ctrl k" { MoveFocus "Up"; }
+
+        // bind "" { MoveFocusOrTab "Left"; }  // Shift ←
+        // bind "" { MoveFocusOrTab "Right"; } // Shift →
+        // bind "" { MoveFocus "Up"; }         // Shift ↑
+        // bind "" { MoveFocus "Down"; }       // Shift ↓
+        // bind "󰳹" { NewPane  "Right"; }
+        // bind "󰅊" { NewPane "Down"; }
+        // bind "" { CloseFocus; }
+
+        // bind "󰌥" { GoToPreviousTab; }
+        // bind "󰌒" { GoToNextTab; }
+        // bind "󰝜" { NewTab; }
+        // bind "" { CloseTab; }
+
+        // bind "" { ToggleFocusFullscreen; }
+        // bind "󰉧" { ToggleFloatingPanes; }
+
+        // bind "" { EditScrollback; SwitchToMode "Normal"; }
+
+        // bind "" { PreviousSwapLayout; }
+        // bind "" { NextSwapLayout; }
+
+        // bind "󰱝" { Quit; }
+
+        // bind "Ctrl +" { Resize "Increase"; }
+        // bind "Ctrl _" { Resize "Decrease"; }
+    }
+
     resize {
-        bind "Alt s" { SwitchToMode "Normal"; }
+        bind "Ctrl r" { SwitchToMode "Normal"; }
         bind "h" "Left" { Resize "Increase Left"; }
         bind "j" "Down" { Resize "Increase Down"; }
         bind "k" "Up" { Resize "Increase Up"; }
@@ -24,15 +61,18 @@ keybinds clear-defaults=true {
         bind "-" { Resize "Decrease"; }
     }
     pane {
-        bind "Ctrl e" { SwitchToMode "Normal"; }
-        // bind "h" { MoveFocus "Left"; }
-        // bind "l" { MoveFocus "Right"; }
-        // bind "j" { MoveFocus "Down"; }
-        // bind "k" { MoveFocus "Up"; }
-        bind "h" { NewPane  "Left"; }
-        bind "l" { NewPane  "Right"; }
-        bind "j" { NewPane "Down"; }
-        bind "k" { NewPane  "Up"; }
+        bind "Ctrl w" { SwitchToMode "Normal"; }
+
+        bind "h" { MoveFocus "Left"; }
+        bind "l" { MoveFocus "Right"; }
+        bind "j" { MoveFocus "Down"; }
+        bind "k" { MoveFocus "Up"; }
+
+        bind "Left" { NewPane  "Left"; }
+        bind "Right" { NewPane  "Right"; }
+        bind "Down" { NewPane "Down"; }
+        bind "Up" { NewPane  "Up"; }
+
         bind "p" { SwitchFocus; }
         bind "n" { NewPane; }
         bind "s" { NewPane "Down"; }
@@ -45,7 +85,7 @@ keybinds clear-defaults=true {
         bind "r" { SwitchToMode "RenamePane"; PaneNameInput 0;}
     }
     move {
-        bind "Alt w" { SwitchToMode "Normal"; }
+        bind "Ctrl n" { SwitchToMode "Normal"; }
         bind "n" "Tab" { MovePane; }
         bind "p" { MovePaneBackwards; }
         bind "h" "Left" { MovePane "Left"; }
@@ -73,7 +113,7 @@ keybinds clear-defaults=true {
         bind "Tab" { ToggleTab; }
     }
     scroll {
-        bind "Alt y" { SwitchToMode "Normal"; }
+        bind "Ctrl m" { SwitchToMode "Normal"; }
         bind "e" { EditScrollback; SwitchToMode "Normal"; }
         bind "s" { SwitchToMode "EnterSearch"; SearchInput 0; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
@@ -87,7 +127,7 @@ keybinds clear-defaults=true {
         // bind "Alt c" { Copy; }
     }
     search {
-        bind "Alt y" { SwitchToMode "Normal"; }
+        bind "Ctrl m" { SwitchToMode "Normal"; }
         bind "Ctrl c" { ScrollToBottom; SwitchToMode "Normal"; }
         bind "j" "Down" { ScrollDown; }
         bind "k" "Up" { ScrollUp; }
@@ -115,9 +155,9 @@ keybinds clear-defaults=true {
     }
     session {
         bind "Ctrl x" { SwitchToMode "Normal"; }
-        bind "Alt y" { SwitchToMode "Scroll"; }
+        bind "Ctrl m" { SwitchToMode "Scroll"; }
         bind "d" { Detach; }
-        bind "Q" { Quit; }
+        bind "q" { Quit; }
     }
     tmux {
         bind "[" { SwitchToMode "Scroll"; }
@@ -142,31 +182,17 @@ keybinds clear-defaults=true {
         bind "Space" { NextSwapLayout; }
         bind "x" { CloseFocus; SwitchToMode "Normal"; }
     }
-    shared_except "locked" {
-        bind "Ctrl g" { SwitchToMode "Locked"; }
-        // bind "Ctrl n" { NewPane; }
-        bind "Alt h" { MoveFocusOrTab "Left"; }
-        bind "Alt l" { MoveFocusOrTab "Right"; }
-        bind "Alt j" { MoveFocus "Down"; }
-        bind "Alt k" { MoveFocus "Up"; }
-        bind "Ctrl +" { Resize "Increase"; }
-        bind "Ctrl _" { Resize "Decrease"; }
-        bind "Alt [" { PreviousSwapLayout; }
-        bind "Alt ]" { NextSwapLayout; }
-        bind "Alt z" { ToggleFocusFullscreen; }
-        bind "Alt f" { ToggleFloatingPanes; }
-    }
     shared_except "normal" "locked" {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
     shared_except "pane" "locked" {
-        bind "Ctrl e" { SwitchToMode "Pane"; }
+        bind "Ctrl w" { SwitchToMode "Pane"; }
     }
     shared_except "resize" "locked" {
-        bind "Alt s" { SwitchToMode "Resize"; }
+        bind "Ctrl r" { SwitchToMode "Resize"; }
     }
     shared_except "scroll" "locked" {
-        bind "Alt y" { SwitchToMode "Scroll"; }
+        bind "Ctrl m" { SwitchToMode "Scroll"; }
     }
     shared_except "session" "locked" {
         bind "Ctrl x" { SwitchToMode "Session"; }
@@ -175,7 +201,7 @@ keybinds clear-defaults=true {
         bind "Ctrl t" { SwitchToMode "Tab"; }
     }
     shared_except "move" "locked" {
-        bind "Alt w" { SwitchToMode "Move"; }
+        bind "Ctrl n" { SwitchToMode "Move"; }
     }
     shared_except "tmux" "locked" {
         bind "Ctrl b" { SwitchToMode "Tmux"; }
@@ -190,23 +216,7 @@ plugins {
 }
 
 
-theme "default"
-
-themes {
-    default {
-        fg "#afb4c3"
-        bg "#272b30"
-        black "#272b30"
-        red "#cc6666"
-        green "#bdb968"
-        yellow "#f0c674"
-        blue "#81a2be"
-        magenta "#b08cba"
-        cyan "#7fb2c8"
-        white "#afb4c3"
-        orange "#de935f"
-    }
-}
+theme "rose-pine"
 
 // Choose what to do when zellij receives SIGTERM, SIGINT, SIGQUIT or SIGHUP
 // eg. when terminal window with an active zellij session is closed
@@ -282,7 +292,7 @@ auto_layout false
 // The name of the default layout to load on startup
 // Default: "default"
 //
-// default_layout "compact"
+default_layout "compact"
 
 // Choose the mode that zellij uses when starting up.
 // Default: normal
@@ -351,3 +361,4 @@ copy_clipboard "system"
 // The folder in which Zellij will look for themes
 //
 // theme_dir "/path/to/my/theme_dir"
+

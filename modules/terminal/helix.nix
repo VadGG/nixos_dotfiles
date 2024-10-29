@@ -57,7 +57,7 @@
         ];
 
         settings = {
-          theme = "catppuccin_frappe";
+          theme = "monokai_pro";
           editor = {
             true-color = true;
             cursorline = true;
