@@ -61,7 +61,7 @@ keybinds clear-defaults=true {
         bind "-" { Resize "Decrease"; }
     }
     pane {
-        bind "Ctrl w" { SwitchToMode "Normal"; }
+        bind "Ctrl e" { SwitchToMode "Normal"; }
 
         bind "h" { MoveFocus "Left"; }
         bind "l" { MoveFocus "Right"; }
@@ -186,7 +186,7 @@ keybinds clear-defaults=true {
         bind "Enter" "Esc" { SwitchToMode "Normal"; }
     }
     shared_except "pane" "locked" {
-        bind "Ctrl w" { SwitchToMode "Pane"; }
+        bind "Ctrl e" { SwitchToMode "Pane"; }
     }
     shared_except "resize" "locked" {
         bind "Ctrl r" { SwitchToMode "Resize"; }

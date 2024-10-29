@@ -1,10 +1,12 @@
-{ pkgs, vars, inputs, ... }:
+{ pkgs, inputs, system, vars, ... }:
 
 {
   nixpkgs.config.allowUnfree = true;
-  nixpkgs.overlays = [ inputs.helix.overlays.default ];
+  # nixpkgs.overlays = [ inputs.helix.overlays.default ];
+  nixpkgs.overlays =
+    [ (final: prev: { helix = inputs.helix.packages.${system}.default; }) ];
   environment = {
-    systemPackages = with pkgs; [ fzf ripgrep bat helix ];
+    systemPackages = with pkgs; [ helix fzf ripgrep bat ];
     # systemPackages = with pkgs;
     #   [ inputs.helix.packages."${pkgs.system}".helix ];
     # sessionVariables = { HELIX_RUNTIME = "$HOME/src/helix/runtime"; };
