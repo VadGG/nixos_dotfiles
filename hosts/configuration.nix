@@ -88,7 +88,7 @@ in {
     font-awesome # Icons
     corefonts # MS
     noto-fonts # Google + Unicode
-    noto-fonts-cjk
+    noto-fonts-cjk-sans
     noto-fonts-emoji
     (nerdfonts.override { fonts = [ "FiraCode" ]; })
   ];
@@ -244,7 +244,8 @@ in {
         enable = true;
         enableCompletion = true;
         bashrcExtra = ''
-          export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+          # export PATH="$PATH:$HOME/bin:$HOME/.local/bin:$HOME/go/bin"
+
           # export HELIX_RUNTIME="/nix/store/q5k6926qyz5iar08av6pn2a82r23zs9q-helix-24.07/lib/runtime"
           # export HELIX_DEFAULT_RUNTIME="/nix/store/q5k6926qyz5iar08av6pn2a82r23zs9q-helix-24.07/lib/runtime"
           # ln -s $HELIX_RUNTIME ~/.config/helix/runtime

@@ -2,11 +2,17 @@
 
 {
   nixpkgs.config.allowUnfree = true;
-  # nixpkgs.overlays = [ inputs.helix.overlays.default ];
-  nixpkgs.overlays =
-    [ (final: prev: { helix = inputs.helix.packages.${system}.default; }) ];
+  # nixpkgs.overlays = [ inputs.helix_cmd.overlays.default ];
+  # nixpkgs.overlays =
+  #   [ (final: prev: { helix = inputs.helix_cmd.packages.${system}.default; }) ];
+
   environment = {
-    systemPackages = with pkgs; [ helix fzf ripgrep bat ];
+    systemPackages = with pkgs; [
+      inputs.helix_cmd.packages."${system}".default
+      fzf
+      ripgrep
+      bat
+    ];
     # systemPackages = with pkgs;
     #   [ inputs.helix.packages."${pkgs.system}".helix ];
     # sessionVariables = { HELIX_RUNTIME = "$HOME/src/helix/runtime"; };
@@ -21,7 +27,8 @@
     };
 
     # home = {
-    #   packages = with pkgs; [ inputs.helix.packages."${pkgs.system}".helix ];
+    #   packages = with pkgs;
+    #     [ inputs.helix_cmd.packages."${pkgs.system}".helix ];
     #   # packages = with pkgs; [ nnn starship ];
     # };
 

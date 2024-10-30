@@ -69,6 +69,26 @@
     variant = "";
   };
 
+  # TODO: for demo
+  # systemd.services.demo-service = {
+  #   description = "Demo Service";
+  #   wantedBy = [ "multi-user.target" ];
+  #   after = [ "network.target" ];
+
+  #   serviceConfig = {
+  #     Type = "simple";
+  #     ExecStart = "${pkgs.hello}/bin/hello";
+  #     Restart = "always";
+  #     RestartSec = 10;
+
+  #     # Security hardening
+  #     ProtectSystem = "strict";
+  #     ProtectHome = true;
+  #     NoNewPrivileges = true;
+  #     PrivateTmp = true;
+  #   };
+  # };
+
   # Enable CUPS to print documents.
   # services.printing.enable = true;
 
